@@ -22,6 +22,9 @@ STATIC.mkdir(exist_ok=True)
 WEB_ROOT = PROJECT.joinpath("public", "exercises")  # target folder for the website
 WEB_ROOT.mkdir(exist_ok=True, parents=True)
 
+SINGLE_EXERCISE = WEB_ROOT.joinpath("single_exercise")
+SINGLE_EXERCISE.mkdir(exist_ok=True)
+
 EXERCISES = PROJECT.joinpath("exercises")  # exercise tex files
 TEMPLATES = PROJECT.joinpath("templates")
 
@@ -117,8 +120,7 @@ def html_individual_exercises(exercises: List[Path], use_cache: bool = True):
     for exercise_file in (pg_bar := tqdm(exercises)):
         pg_bar.set_description(f"Processing: {str(exercise_file)}")
 
-        destination = WEB_ROOT.joinpath(
-            "single_exercise",  # folder
+        destination = SINGLE_EXERCISE.joinpath(
             relative(exercise_file, EXERCISES).with_suffix(".html"),
         )
         tex_template = "single_exercise.tex.jinja2"
@@ -208,7 +210,7 @@ def make_html(
     # fmt: on
 
 
-def all_exercises():
+def all_exercise_sheets():
     exercise_files = filter(
         lambda f: f.suffix == ".tex" and f.stem.startswith("sheet_"),
         PROJECT.iterdir(),
@@ -271,7 +273,7 @@ def solutions(show: bool = typer.Option(None, "--show/--hide")):
         typer.echo("Nothing selected, doing nothing!")
         return
 
-    for _, sheet in all_exercises():
+    for _, sheet in all_exercise_sheets():
         with fileinput.input(sheet, inplace=True) as f:
             for line in f:
                 if re.search(r"(\% )?\\solutiontrue", line):
@@ -293,7 +295,7 @@ def make_website():
     sheets = []
     review_exercises = []
     # make content
-    for number, file in all_exercises():
+    for number, file in all_exercise_sheets():
         sheet = {
             "number": number,
             "tutorial_date": scrape_tutorial_date(file),
@@ -313,7 +315,7 @@ def make_website():
     typer.echo("Turn Exercise Review List into HTML")
     available = html_individual_exercises(review_exercises)
     available_full_path = [WEB_ROOT.joinpath(p).resolve() for p in available]
-    for path in WEB_ROOT.joinpath("single_exercise").rglob("*"):
+    for path in SINGLE_EXERCISE.rglob("*"):
         if path.is_file() and (path.resolve() not in available_full_path):
             path.unlink()
 
