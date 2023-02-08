@@ -37,9 +37,7 @@ The GitHub Actions build on the Command Line Interface. So make sure it does
 not break.
 
 1. On every push to the main branch, all exercises and solutions are generated
-and uploaded as artifacts of the workflow run:
-
-	https://github.com/Mannheim-Probability/WT1-Tex-Files/actions/workflows/make-pdfs.yml
+and uploaded as artifacts of the workflow run (cf. `make-pdfs.yml`)
 
 2. A website can be automatically generated from the exercise sheets. For this
    you need to
