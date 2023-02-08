@@ -45,14 +45,13 @@ and uploaded as artifacts of the workflow run:
    you need to
    - Replace the lines
    		```text
-   		64           repository: Mannheim-Probability/optimization-in-ML
+   		64           repository: Mannheim-Probability/Probability-Theory
    		...
    		86           git push git@github.com:Mannheim-Probability/Probability-Theory.git
    		``` 
    		in `deploy-html.yml` with the appropriate target repository 
    - Create the `html` branch and activate GitHub Pages for the `html` branch in the _**target**_ repository
-   - Allow this repository to push to the target repository by creating an ssh deploy key and adding it as a secret:
-	 in this repository
+   - Allow this repository to push to the target repository by creating an ssh deploy key and adding it as a secret (in this repository):
 	 	- type `ssh-keygen` into a (local) terminal and choose a non-standard location (you want to delete the keys afterwards)
 		- copy the entire content of the public key (id_rsa.pub) into `Settings> Deploy keys> Add Deploy Key` of the _**target**_ repository
 		- copy the entire content of the private key (id_rsa) into `Settings> Secrets & Variables > Actions > New Repository Secret` of _**this**_ repository with the name `SSH_DEPLOY_KEY`
