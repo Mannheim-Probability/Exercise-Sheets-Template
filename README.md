@@ -1,4 +1,4 @@
-# Exercise Sheets for WT1
+# Exercise Sheets Template 
 
 The macro 
 
@@ -41,5 +41,15 @@ and uploaded as artifacts of the workflow run:
 
 	https://github.com/Mannheim-Probability/WT1-Tex-Files/actions/workflows/make-pdfs.yml
 
-2. A website is also automatically generated from the exercise sheets,
-	see: https://mannheim-probability.github.io/Probability-Theory/exercises/
+2. A website can be automatically generated from the exercise sheets. For this
+   you need to
+   - Replace `git push git@github.com:Mannheim-Probability/Probability-Theory.git` in `deploy-html.yml` with the appropriate target repository 
+   - Activate GitHub Pages for the `html` branch of this target
+   - Create an ssh key for the target and add it as a `SSH_DEPLOY_KEY` secret
+	 in this repository
+
+	You could also push to this repository to avoid the need for ssh keys, but
+	to enable github pages you need to make this repository (including the solutions) public.
+	If only the target is public, the solutions will only be pushed once the due
+	date has passed on the other hand.
+	
