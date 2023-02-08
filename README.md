@@ -43,10 +43,20 @@ and uploaded as artifacts of the workflow run:
 
 2. A website can be automatically generated from the exercise sheets. For this
    you need to
-   - Replace `git push git@github.com:Mannheim-Probability/Probability-Theory.git` in `deploy-html.yml` with the appropriate target repository 
-   - Activate GitHub Pages for the `html` branch of this target
-   - Create an ssh key for the target and add it as a `SSH_DEPLOY_KEY` secret
+   - Replace the lines
+   		```text
+   		64           repository: Mannheim-Probability/optimization-in-ML
+   		...
+   		86           git push git@github.com:Mannheim-Probability/Probability-Theory.git
+   		``` 
+   		in `deploy-html.yml` with the appropriate target repository 
+   - Create the `html` branch and activate GitHub Pages for the `html` branch in the _**target**_ repository
+   - Allow this repository to push to the target repository by creating an ssh deploy key and adding it as a secret:
 	 in this repository
+	 	- type `ssh-keygen` into a (local) terminal and choose a non-standard location (you want to delete the keys afterwards)
+		- copy the entire content of the public key (id_rsa.pub) into `Settings> Deploy keys> Add Deploy Key` of the _**target**_ repository
+		- copy the entire content of the private key (id_rsa) into `Settings> Secrets & Variables > Actions > New Repository Secret` of _**this**_ repository with the name `SSH_DEPLOY_KEY`
+		- delete your local keys
 
 	You could also push to this repository to avoid the need for ssh keys, but
 	to enable github pages you need to make this repository (including the solutions) public.
