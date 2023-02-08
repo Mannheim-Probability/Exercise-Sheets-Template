@@ -1,0 +1,21 @@
+<!DOCTYPE html><html lang="en">
+<head>
+	<title>Exercises</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" href="LaTeXML.css" type="text/css">
+	<link rel="stylesheet" href="ltx-article.css" type="text/css">
+</head>
+<body>
+
+	<h2> Exercise Sheets <h2>
+	<ul>
+		{% for number, file in sheets.items() -%}
+		<li><a href="{{ file }}">Sheet {{ number }}</a></li>
+		{% endfor %}
+	</ul>	
+
+	<button id="randomExercise"> Review a Random Exercise!</button>
+
+	<script src="js/random_exercise.js"></script>
+</body>
+</html>

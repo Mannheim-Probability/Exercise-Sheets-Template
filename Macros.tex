@@ -1,0 +1,116 @@
+\usepackage{a4wide,times,amsmath,amssymb,eurosym,graphicx,mathtools}
+\usepackage{amsthm}
+\usepackage{bbm}	%Für \mathbbm
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage[german,english]{babel}
+\usepackage{comment}
+\usepackage{betterStackrel}
+\usepackage{csquotes}
+\parindent0pt
+\parskip0.5ex
+
+\newtheorem*{remark}{Remark}
+\theoremstyle{definition}
+\newtheorem{exercise}{Exercise}
+\theoremstyle{plain}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{definition}{Definition}
+
+%%%% define \begin{varthm}{<reference to \label{} of other theorem>}[<Exercise|Theorem|Def|...>]
+\newtheorem*{varthm+inner}{\varthmname}
+\newcommand{\varthmname}{}
+\newenvironment{varthm}[2][Exercise]
+ {\renewcommand{\varthmname}{#1 \ref{#2}'}\begin{varthm+inner}}
+ {\end{varthm+inner}}
+
+\setlist[enumerate,1]{label={(\roman*)}}
+\setlist[enumerate,2]{label={(\alph*)}}
+\setlist[enumerate,3]{label={(\Roman*)}}
+
+\newcommand{\bE}{\mathbb{E}}
+\newcommand{\bQ}{\mathbb{Q}}
+\newcommand{\bM}{\mathbb{M}}
+\newcommand{\bN}{\mathbb{N}}
+\newcommand{\bP}{\mathbb{P}}
+\newcommand{\bR}{\mathbb{R}}
+\newcommand{\bT}{\mathbb{T}}
+\newcommand{\bU}{\mathbb{U}}
+\newcommand{\bC}{\mathbb{C}}
+
+\newcommand{\cE}{\mathcal{E}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\cQ}{\mathcal{Q}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cN}{\mathcal{N}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\Real}{\mathrm{Re}}
+\newcommand{\Imag}{\mathrm{Im}}
+\newcommand{\ind}[1]{\mathbbm{1}_{#1}} %Definition 
+
+\newcommand{\Exp}[2][]{\bE_{ #1 }\left[ #2 \right]}
+\renewcommand{\Pr}{\mathbb{P}}
+\newcommand{\Cov}{\text{Cov}}
+\newcommand{\Var}{\text{Var}}
+\newcommand{\Poi}{\text{Poi}}
+\newcommand{\Unif}{\cU}
+\newcommand{\Normal}{\cN}
+\newcommand{\charFct}{\varphi}
+\newcommand{\integer}{\mathbb{Z}}
+\newcommand{\naturals}{\mathbb{N}}
+\newcommand{\conj}[1]{\overline{#1}}
+\newcommand{\reals}{\mathbb{R}}
+\newcommand{\complex}{\mathbb{C}}
+%
+\newcommand{\eps}{\varepsilon}
+\renewcommand{\d}{\mathrm{d}}
+\newcommand{\eqdist}{\overset{\mathrm{(d)}}{=}}
+\newcommand{\as}{almost surely}
+\newcommand{\dint}{\, \mathrm{d}}
+\newcommand*{\indep}{{\perp \!\!\! \perp}}
+\newcommand\restr[2]{\ensuremath{\left.#1\right|_{#2}}}
+
+\renewcommand{\mid}{\,|\,}
+\renewcommand{\complement}{c}
+
+%%% better stackrel shorthands
+
+\newcommand*{\lximplies}[1]{\lstackrel{#1}{\implies}} %%%%% =>
+\newcommand*{\lximpliedby}[1]{\lstackrel{#1}{\impliedby}} %%%%%% <=
+\newcommand*{\lxiff}[1]{\lstackrel{#1}{\iff}} %%%%%%%%%%%%% <=>
+\newcommand*{\lxeq}[1]{\lstackrel{#1}{=}} %%%%%%%%%% =
+\newcommand*{\lxle}[1]{\lstackrel{#1}{\le}}
+\newcommand*{\lxge}[1]{\lstackrel{#1}{\ge}}
+
+\newcommand*{\ximplies}[1]{\stackrel{#1}{\implies}} %%%%% =>
+\newcommand*{\ximpliedby}[1]{\stackrel{#1}{\impliedby}} %%%%%% <=
+\newcommand*{\xiff}[1]{\stackrel{#1}{\iff}} %%%%%%%%%%%%% <=>
+\newcommand*{\xeq}[1]{\stackrel{#1}{=}} %%%%%%% =
+\newcommand*{\xle}[1]{\stackrel{#1}{\le}} %%%%%%%
+\newcommand*{\xge}[1]{\stackrel{#1}{\ge}} %%%%%%%
+\newcommand*{\xsim}[1]{\stackrel{#1}{\sim}} %%%%%%%
+\newcommand*{\xto}[1]{\stackrel{#1}{\to}} %%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Solution Toggle
+%%%%%%%%%%%%%%%%%%
+
+\ifsolution
+	\newenvironment{solution}[1][{Solution}] {\begin{proof}[#1]} {\end{proof}}
+\else
+	\excludecomment{solution}
+	\hinttrue % automatically activate hints when solutionfalse
+\fi
+
+\ifhint
+	\newtheorem*{hint}{Hint}
+\else
+	\excludecomment{hint}
+\fi
+
+%%%%

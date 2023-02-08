@@ -1,0 +1,14 @@
+\ProvidesPackage{betterStackrel}
+%(cf. https://tex.stackexchange.com/questions/467779/alignment-of-implication-arrows-with-text-on-top)
+
+% left aligned stackrel
+\newcommand*{\lstackrel}[2]{ %uses leftsides smashoperator thus ignoring overlap towards the left
+	\mathrel{% makes the resulting stack a relation class (like =,<,>,...)
+		\smashoperator[l]{\mathop{#2}^{#1}}
+	}
+}% use when aligning to the left
+
+% centered stackrel with stretchability
+\renewcommand*{\stackrel}[2]{%uses no smashoperator, but adds back stretchability of \implies to the result contrary to \stackrel
+	\;\mkern-\thickmuskip\mathop{#2}\limits^{#1}\;\mkern-\thickmuskip
+}% use in \(\) and as individual operator without aligning neccessities

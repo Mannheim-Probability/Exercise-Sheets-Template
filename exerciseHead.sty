@@ -1,0 +1,37 @@
+\ProvidesPackage{exerciseHead}
+
+%%% Define Meta-Info Commands
+
+\newcommand*{\course}[1]{\gdef\@course{#1}}
+\newcommand*{\@course}{Please set \textbackslash{}course\{\} (e.g. Linear Algebra 1)}
+
+\newcommand*{\semester}[1]{\gdef\@semester{#1}}
+\newcommand*{\@semester}{Please set \textbackslash{}semester\{\} (e.g. FSS 2022)}
+
+\newcommand*{\dueDate}[1]{\gdef\@dueDate{Hand in your solutions by #1.}}
+\newcommand*{\tutorialDate}[1]{\gdef\@tutorialDate{For the exercise class on the #1.}}
+
+\newcommand*{\sheetNumber}[1]{\title{Sheet #1}}
+
+\newif\ifsolution
+\newif\ifhint
+
+%%%% Resulting Heading:
+\renewcommand*{\maketitle}{
+	\textbf{\large \@course} \hfill\textbf{\large Universität Mannheim} \\
+	{\large \@semester  \hfill \@author}\ \\
+
+	\begin{center}
+	{
+		\Large
+		\textbf{\ifsolution Solution \fi\@title}
+	}
+	\end{center}
+
+	%%%% Due Date %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+	\@tutorialDate \\
+	\@dueDate 
+
+	\medskip
+}

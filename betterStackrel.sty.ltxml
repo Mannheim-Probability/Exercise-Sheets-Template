@@ -1,0 +1,4 @@
+## Defines Macros for latexml defined in betterStackrel.sty
+
+# Avoid https://github.com/brucemiller/LaTeXML/issues/1818:
+DefMacro('\lstackrel{}{}', '\stackrel{#1}{#2}');

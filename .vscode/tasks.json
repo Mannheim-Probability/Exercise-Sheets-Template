@@ -1,0 +1,102 @@
+{
+	// See https://go.microsoft.com/fwlink/?LinkId=733558
+	// for the documentation about the tasks.json format
+	"version": "2.0.0",
+	"tasks": [
+		{"label": "test",
+		"type": "shell",
+		"command": "${command:python.interpreterPath}",
+		"args": ["-c", "'print(0)'"]
+	},
+		{
+			"label": "setup",
+			"type": "shell",
+			"command": "python3 -m venv env && . ./env/bin/activate && pip install -r requirements.txt && chmod +x ./cli.py",
+			"runOptions": {
+				"runOn": "folderOpen"
+			},
+			"windows":{
+				"command": "python -m venv env; . ./env/Scripts/Activate.ps1;  pip install -r requirements.txt",
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "Toggle Solutions",
+			"type":"shell",
+			"options": {},
+			"command": "${command:python.interpreterPath}",
+			"args": ["./cli.py", "solutions", "--${input:show_solutions}"],
+			"problemMatcher": []
+		},
+		{
+			"label": "make website",
+			"type": "shell",
+			"command": "${command:python.interpreterPath}",
+			"args": ["./cli.py", "make-website"],
+			"problemMatcher": [
+				{
+					"owner": "latex",
+					"fileLocation": [
+						"relative",
+						"${workspaceFolder}/exercises"
+					],
+					"applyTo": "openDocuments",
+					"pattern": [
+						{
+							"regexp": "^(Error):(.*)$",
+							"severity": 1,
+							"message": 2
+						},
+						{
+							"regexp": "^( )*at (.+); line (\\d+) col (\\d+) - line (\\d+) col (\\d+)$",
+							"file": 2,
+							"line": 3,
+							"column": 4,
+							"endLine": 5,
+							"endColumn": 6
+						}
+					]
+				}
+			]
+		},
+		{
+			"label": "make html",
+			"type": "shell",
+			"command": "${command:python.interpreterPath}",
+			"args": ["./cli.py", "make-html", "${file}"],
+			"problemMatcher": [
+				{
+					"owner": "latex",
+					"fileLocation": [
+						"relative",
+						"${workspaceFolder}/exercises"
+					],
+					"applyTo": "openDocuments",
+					"pattern": [
+						{
+							"regexp": "^(Error):(.*)$",
+							"severity": 1,
+							"message": 2
+						},
+						{
+							"regexp": "^( )*at (.+); line (\\d+) col (\\d+) - line (\\d+) col (\\d+)$",
+							"file": 2,
+							"line": 3,
+							"column": 4,
+							"endLine": 5,
+							"endColumn": 6
+						}
+					]
+				}
+			]
+		}
+	],
+	"inputs": [
+		{
+			"id": "show_solutions",
+			"description": "Show/Hide Solutions",
+			"options": ["show", "hide"],
+			"type": "pickString"
+		}
+	]
+}

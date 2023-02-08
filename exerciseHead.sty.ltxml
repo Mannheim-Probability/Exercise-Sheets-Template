@@ -1,0 +1,14 @@
+# Defines Macros for latexml defined in exerciseHead.sty
+
+DefMacro('\course{}', '\@add@frontmatter{ltx:note}[role=course]{#1}');
+DefMacro('\tutorialDate{}', '\@add@frontmatter{ltx:note}[role=tutorialDate]{#1}');
+DefMacro('\dueDate{}', '\@add@frontmatter{ltx:note}[role=dueDate]{#1}');
+DefMacro('\semester{}', '\@add@frontmatter{ltx:note}[role=semester]{#1}');
+DefMacro('\sheetNumber{}', '\title{Sheet #1}');
+
+DefConditional('\ifsolution');
+DefConditional('\ifhint');
+
+# Show all for html (might need to be reworked eventually)
+RawTeX('\solutiontrue');
+RawTeX('\hinttrue');
